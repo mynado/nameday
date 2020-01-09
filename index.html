@@ -16,25 +16,41 @@
         <h1>Name Day</h1>
         <form id="search-form">
             <div class="form-group">
-                <input type="text" class="form-control" id="search" placeholder="Name">
-                <!-- <select class="form-control" id="country">
-                    <option>at</option>
-                    <option>cz</option>
-                    <option>de</option>
-                    <option>dk</option>
-                    <option>fi</option>
-                    <option>fr</option>
-                    <option>hr</option>
-                    <option>hu</option>
-                    <option>it</option>
-                    <option>pl</option>
-                    <option>se</option>
-                    <option>sk</option>
-                    <option>us</option>
-                  </select> -->
-                <input type="text" class="form-control mt-2" id="country" placeholder="Country">
-                <input type="number" class="form-control mt-2" id="month" placeholder="7">
-                <input type="number" class="form-control mt-2" id="day" placeholder="15">
+                <div class="name">
+                    <label for="month">Name:</label>
+                    <input type="text" class="form-control" id="search" placeholder="Name">
+                </div>
+                <div class="country">
+                    
+                    <label for="month">Country:</label>
+                    <!-- <input type="text" class="form-control" id="country" placeholder="Country"> -->
+                    <select class="form-control" id="country">
+                        <option value="at">Austria</option>
+                        <option value="cz">Czechia</option>
+                        <option value="de">Germany</option>
+                        <option value="dk">Denmark</option>
+                        <option value="fi">Finland</option>
+                        <option value="fr">France</option>
+                        <option value="hr">Croatia</option>
+                        <option value="hu">Hungary</option>
+                        <option value="it">Italy</option>
+                        <option value="pl">Poland</option>
+                        <option value="se">Sweden</option>
+                        <option value="sk">Slovakia</option>
+                        <option value="us">USA</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" id="date">
+                
+                <div class="month">
+                    <label for="month">Month:</label>
+                    <input type="number" class="form-control" id="month" placeholder="7">
+                </div>
+                <div class="day">
+                    <label for="day">Day:</label>
+                    <input type="number" class="form-control" id="day" placeholder="15">
+                </div>
             </div>
             <button class="btn btn-primary">Search</button>
         </form>
