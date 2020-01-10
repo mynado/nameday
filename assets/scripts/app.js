@@ -3,12 +3,13 @@
  * 
  */
  const renderNameResult = data => {
+    const country = data[ "country name" ];
     data.results.forEach(result => {
         document.querySelector('#display').innerHTML += `
             <div class="card mt-3">
                 <h5 class="card-title">${result.name}</h5>
                 <p class="card-text">Date: ${result.day}/${result.month}</p>
-                <p class="card-text">Country: ${document.querySelector('#country').value}</p>
+                <p class="card-text">${country}</p>
             </div>
         `;
     });
@@ -74,7 +75,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
         });
     }
     document.querySelector('#search').value = "";
-    document.querySelector('#month').value = "";
-    document.querySelector('#day').value = "";
+    document.querySelector('#month').value = "Month";
+    document.querySelector('#day').value = "Day";
 
 });
