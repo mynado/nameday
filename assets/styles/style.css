@@ -4,21 +4,28 @@
     padding: 0;
 }
 
+#country {
+    width: 30%;
+}
+
 #date {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 
 }
-#date .country,
 #date .month,
 #date .day {
     display: flex;
     justify-content: space-evenly;
-    width: 48%;
+    width: 100%;
 }
 
-#date input {
-    max-width: 70%;
+#month {
+    max-width: 100%;
+}
+
+#day {
+    max-width: 50%;
 }
 
 #display {

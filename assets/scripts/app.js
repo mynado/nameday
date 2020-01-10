@@ -47,8 +47,8 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     e.preventDefault();
     const name = document.querySelector('#search').value;
     const country = document.querySelector('#country').value;
-    const month = document.querySelector('#month').value;
-    const day = document.querySelector('#day').value;
+    const month = Number(document.querySelector('#month').value);
+    const day = Number(document.querySelector('#day').value);
     
     document.querySelector('#display').innerHTML = "";
     
