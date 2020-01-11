@@ -7,9 +7,11 @@
     data.results.forEach(result => {
         document.querySelector('#display').innerHTML += `
             <div class="card mt-3">
-                <h5 class="card-title">${result.name}</h5>
-                <p class="card-text">Date: ${result.day}/${result.month}</p>
+                <h4 class="card-title">${result.name}</h4>
+                <p class="card-text">${result.day}/${result.month}</p>
                 <p class="card-text">${country}</p>
+                <h6>Other names this day</h6>
+                ${(result.name.includes(",")) ? result.name : "There is no other names for this date." }
             </div>
         `;
     });
