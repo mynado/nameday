@@ -2,19 +2,31 @@
  * Name Day App
  * 
  */
+
+
  const renderNameResult = data => {
     const country = data[ "country name" ];
+    const searchName = document.querySelector('#search').value;
+    const capitalName = searchName[0].toUpperCase() + searchName.substr(1);
     data.results.forEach(result => {
-        document.querySelector('#display').innerHTML += `
-            <div class="card mt-3">
-                <h4 class="card-title">${result.name}</h4>
-                <p class="card-text">${result.day}/${result.month}</p>
-                <p class="card-text">${country}</p>
-                <h6>Other names this day</h6>
-                ${(result.name.includes(",")) ? result.name : "There is no other names for this date." }
-            </div>
-        `;
+        let nameArr = result.name.split(',');
+        let filteredArr = nameArr.filter(i => i.includes(capitalName));
+        const found = filteredArr.find(name => name.includes(capitalName));
+        
+        console.log(found);
+        if (found) {
+            document.querySelector('#display').innerHTML += `
+                <div class="card mt-3">
+                    <h4 class="card-title">${filteredArr}</h4>
+                    <p class="card-text">${result.day}/${result.month}</p>
+                    <p class="card-text">${country}</p>
+                    <h6>Other names this day</h6>
+                    ${(result.name.includes(",")) ? result.name : "There is no other names for this date." }
+                </div>
+            `;
+        }
     });
+    document.querySelector('#search').value = "";
  };
 
  const renderDateResult = data => {
@@ -23,23 +35,7 @@
         document.querySelector('#display').innerHTML += `
             <div class="card mt-3">
                 <h5 class="card-title">${result.dates.day}/${result.dates.month}</h5>
-                <p class="card-text">${
-                    (country == "at") ? result.namedays.at
-                        : (country == "cz") ? result.namedays.cz
-                        : (country == "de") ? result.namedays.de
-                        : (country == "dk") ? result.namedays.dk
-                        : (country == "es") ? result.namedays.es
-                        : (country == "fi") ? result.namedays.fi
-                        : (country == "fr") ? result.namedays.fr
-                        : (country == "hr") ? result.namedays.hr  
-                        : (country == "hu") ? result.namedays.hu
-                        : (country == "it") ? result.namedays.it
-                        : (country == "pl") ? result.namedays.pl
-                        : (country == "se") ? result.namedays.se          
-                        : (country == "sk") ? result.namedays.sk
-                        : result.namedays.us
-                    }
-                </p>
+                <h6>${result.namedays[country]}</h6>
             </div>
         `;
     });
@@ -76,7 +72,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
             console.log('danger', err); 
         });
     }
-    document.querySelector('#search').value = "";
+    
     document.querySelector('#month').value = "Month";
     document.querySelector('#day').value = "Day";
 
