@@ -113,7 +113,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
 
 });
 
-document.querySelector('#search-form').addEventListener('change', e => {
+document.querySelector('#search-form .country').addEventListener('change', e => {
     e.preventDefault();
     const country = document.querySelector('#country').value;
     const timezone = document.querySelector('#timezone').value;
