@@ -47,21 +47,19 @@ form {
 /* Date layout */
 
 #date {
-    display: flex;
-    justify-content: space-between;
+    display: block;
+
     
     margin-bottom: 1rem;
     width: 100%;
 
 }
-#date .month,
-#date .day {
-    width: 45%;
-}
 
 #month,
 #day {
     border: none;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 /* Button */
@@ -125,7 +123,51 @@ form {
 }
 
 /* Large devices */
-@media (min-width: 992px) { ... }
+@media (min-width: 992px) {
+
+    .search-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    .namedate-wrapper {
+        width: 48%;
+       
+    }
+
+    
+
+    #date {
+        display: block;
+        
+    }
+
+    #date #day,
+    #date #month {
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+
+    #display {
+        width: 48%;
+    }
+
+    #display .card {
+        margin-top: 0;
+    }
+
+    /* Button */
+
+    .button-wrapper {
+        text-align: left;
+    }
+
+    .btn {
+        width: 20%;
+    }
+
+    
+
+}
 
 /* Extra large devices */
-@media (min-width: 1200px) { ... }
+/* @media (min-width: 1200px) {} */

@@ -49,7 +49,7 @@ const renderNameResult = data => {
        const otherNames = nameArr.filter(name => !name.includes(capitalName));  
        if (found) {
            display.innerHTML += `
-               <div class="card mt-3">
+               <div class="card">
                    <h2 class="card-title">${filteredArr}</h2>
                    <p class="card-text">${filteredArr}'s Name Day is ${result.day}/${result.month} in ${country}</p>
                    
@@ -57,9 +57,7 @@ const renderNameResult = data => {
                    ${(result.name.includes(",")) ? otherNames : "There is no other names for this date." }
                </div>
            `;
-       } else {
-           renderMsg("Sorry! This name does not exist in the database.");
-       }
+       } 
    });
    document.querySelector('#search').value = "";
 };
@@ -68,7 +66,7 @@ const renderDateResult = data => {
    const country = document.querySelector('#country').value;
    data.data.forEach(result => { 
        display.innerHTML += `
-           <div class="card mt-3">
+           <div class="card">
                <h2 class="card-title">${result.dates.day}/${result.dates.month}</h2>
                <h3>${result.namedays[country]}</h3>
            </div>
@@ -113,7 +111,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
    document.querySelector('#day').value = "Day";
 });
 
-document.querySelector('#search-form .country').addEventListener('change', e => {
+document.querySelector('#search-form #countrytime').addEventListener('change', e => {
     e.preventDefault();
     const country = document.querySelector('#country').value;
     const timezone = document.querySelector('#timezone').value;
