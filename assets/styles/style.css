@@ -6,10 +6,10 @@
 
 body {
     background-image: url(../images/card.png);
-    background-color: transparent;
     background-position: center; 
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     background-color: #eee;
     font-family: 'Raleway', sans-serif;
 }
@@ -65,8 +65,21 @@ form {
 }
 
 /* Button */
-button {
-    background-color: rgb(255, 255, 255) !important;
+
+.button-wrapper {
+    text-align: center;
+}
+
+.btn {
+    color: #ffffff;
+    background-color: #6653c2;
+    width: 100%;
+}
+
+.btn:hover {
+    color: #6653c2;
+    border-color: #6653c2;;
+    background-color: white;
 }
 
 /* Card layout */
@@ -90,8 +103,6 @@ button {
 }
 
 
-/* Small devices */
-@media (min-width: 576px) {}
 
 /* Medium devices */
 @media (min-width: 768px) {

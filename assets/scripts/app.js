@@ -81,7 +81,6 @@ document.querySelector('#search-form').addEventListener('submit', e => {
    const day = Number(document.querySelector('#day').value);
    
    display.innerHTML = "";
-   
 
    if (name) {
        getDateByName(name, country).then(data => {
@@ -107,10 +106,8 @@ document.querySelector('#search-form').addEventListener('submit', e => {
            console.log('danger', err); 
        });
    }
-   
    document.querySelector('#month').value = "Month";
    document.querySelector('#day').value = "Day";
-
 });
 
 document.querySelector('#search-form .country').addEventListener('change', e => {
