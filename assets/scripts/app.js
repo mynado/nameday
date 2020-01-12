@@ -110,3 +110,17 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     document.querySelector('#day').value = "Day";
 
 });
+
+document.querySelector('#search-form').addEventListener('change', e => {
+    e.preventDefault();
+    console.log('change');
+    display.innerHTML = "";
+    getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
+        console.log(data)
+        renderTodaysName(data);
+     })
+     .catch(err => {
+        // network error
+        console.log('danger', err);
+     });
+});
