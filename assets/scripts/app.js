@@ -41,6 +41,27 @@
     });
  };
 
+ const renderTodaysName = data => {
+    const country = document.querySelector('#country').value;
+    data.data.forEach(result => { 
+        document.querySelector('#display').innerHTML += `
+            <div class="card mt-3">
+                <p>Today, ${result.dates.day}/${result.dates.month} is the name day of</p>
+                <h4>${result.namedays[country]}</h4>
+            </div>
+        `;
+    });
+ };
+ const country = document.querySelector('#country').value;
+ const timezone = document.querySelector('#timezone').value;
+ getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
+    console.log(data)
+    renderTodaysName(data);
+ })
+ .catch(err => {
+    // network error
+    console.log('danger', err);
+ });
 
 document.querySelector('#search-form').addEventListener('submit', e => {
     e.preventDefault();
