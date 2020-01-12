@@ -2,7 +2,15 @@
  * Name Day App
  * 
  */
+ const display = document.querySelector('#display');
+ const country = document.querySelector('#country').value;
+ const timezone = document.querySelector('#timezone').value;
 
+ const renderMsg = msg => {
+    display.innerHTML = `
+    <div class="alert alert-warning" role="alert">${msg}</div>
+    `;
+ };
 
  const renderNameResult = data => {
     const country = data[ "country name" ];
@@ -15,7 +23,7 @@
         
         console.log(found);
         if (found) {
-            document.querySelector('#display').innerHTML += `
+            display.innerHTML += `
                 <div class="card mt-3">
                     <h4 class="card-title">${filteredArr}</h4>
                     <p class="card-text">${result.day}/${result.month}</p>
@@ -32,7 +40,7 @@
  const renderDateResult = data => {
     const country = document.querySelector('#country').value;
     data.data.forEach(result => { 
-        document.querySelector('#display').innerHTML += `
+        display.innerHTML += `
             <div class="card mt-3">
                 <h5 class="card-title">${result.dates.day}/${result.dates.month}</h5>
                 <h6>${result.namedays[country]}</h6>
@@ -44,7 +52,7 @@
  const renderTodaysName = data => {
     const country = document.querySelector('#country').value;
     data.data.forEach(result => { 
-        document.querySelector('#display').innerHTML += `
+        display.innerHTML += `
             <div class="card mt-3">
                 <p>Today, ${result.dates.day}/${result.dates.month} is the name day of</p>
                 <h4>${result.namedays[country]}</h4>
@@ -52,8 +60,7 @@
         `;
     });
  };
- const country = document.querySelector('#country').value;
- const timezone = document.querySelector('#timezone').value;
+ 
  getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
     console.log(data)
     renderTodaysName(data);
@@ -70,13 +77,18 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     const month = Number(document.querySelector('#month').value);
     const day = Number(document.querySelector('#day').value);
     
-    document.querySelector('#display').innerHTML = "";
+    display.innerHTML = "";
     
 
     if (name) {
         getDateByName(name, country).then(data => {
+            if (data.results.length > 0) {
                 console.log(data);
-                renderNameResult(data);  
+                renderNameResult(data); 
+            } else {
+                renderMsg("Sorry! This name does not exist in the database.")
+            }
+                 
         })
         .catch(err => {
             // network error?
