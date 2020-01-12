@@ -28,14 +28,15 @@ const renderTodaysName = data => {
   })
   .catch(err => {
      // network error
-     console.log('danger', err);
+     renderMsg(err);
   });
 
-  const renderMsg = msg => {
+// Error msg
+const renderMsg = msg => {
     display.innerHTML = `
     <div class="alert alert-warning" role="alert">${msg}</div>
     `;
- };
+};
 
 const renderNameResult = data => {
    const country = data[ "country name" ];
@@ -56,6 +57,8 @@ const renderNameResult = data => {
                    ${(result.name.includes(",")) ? otherNames : "There is no other names for this date." }
                </div>
            `;
+       } else {
+           renderMsg("Sorry! This name does not exist in the database.");
        }
    });
    document.querySelector('#search').value = "";
@@ -92,8 +95,8 @@ document.querySelector('#search-form').addEventListener('submit', e => {
            }     
        })
        .catch(err => {
-           // network error?
-           console.log('danger', err); 
+           // network error
+           renderMsg(err);
        });
    }
    if (month && day) {
@@ -102,8 +105,8 @@ document.querySelector('#search-form').addEventListener('submit', e => {
            renderDateResult(data);
        })
        .catch(err => {
-           // network error?
-           console.log('danger', err); 
+           // network error
+           renderMsg(err);
        });
    }
    document.querySelector('#month').value = "Month";
@@ -121,6 +124,6 @@ document.querySelector('#search-form .country').addEventListener('change', e => 
     })
     .catch(err => {
        // network error
-       console.log('danger', err);
+       renderMsg(err);
     });
 });
