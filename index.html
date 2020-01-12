@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Name Day App</title>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"> 
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <!-- Custom css -->
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
-<body class="bg-light text-dark">
+<body class="text-dark">
     <div class="container mt-3 col-md-6 col-lg-4">
         <h1>Name Day App</h1>
         <div id="today">
@@ -19,7 +21,7 @@
         <form id="search-form">
             <div class="form-group" id="countrytime">
                 <div class="country"> 
-                    <select class="form-control" id="country" required>
+                    <select class="form-control custom-select" id="country" required>
                         <option>Country</option>
                         <option value="at">Austria</option>
                         <option value="cz">Czechia</option>
@@ -37,21 +39,19 @@
                     </select>
                 </div>
                 <div class="timezone-wrapper"> 
-                    <select class="form-control" id="timezone" required>
+                    <select class="form-control custom-select" id="timezone" required>
                         <option>Timezone</option>
-                        <option value="Europe/Stockholm" selected>Europe/Stockholm</option>
-                        <option value="Europe/London">Europe/London</option>
-                        <option value="Africa/Dakar">Africa/Dakar</option>
-                        <option value="Africa/Mogadishu">Africa/Mogadishu</option>
-                        <option value="America/Los_Angeles">America/Los Angeles</option>
-                        <option value="America/New_York">America/New York</option>
-                        <option value="Asia/Dubai">Asia/Dubai</option>
-                        <option value="Asia/Ho_Chi_Minh">Asia/Ho Chi Minh</option>
-                        <option value="Australia/Sydney">Australia/Sydney</option>
-                        <option value="Indian/Maldives">Indian/Maldives</option>
-                        <option value="Pacific/Honolulu">Pacific/Honolulu</option>
-                        <option value="Pacific/Fiji">Pacific/Fiji</option>
-                        <option value="UCT">UCT</option>
+                        <option value="Pacific/Honolulu">Honolulu (GMT-10)</option>
+                        <option value="America/Los_Angeles">Los Angeles (GMT-8)</option>
+                        <option value="America/New_York">New York (GMT-5)</option>
+                        <option value="Europe/London">London (GMT)</option>
+                        <option value="Europe/Stockholm" selected>Stockholm (GMT+1)</option>
+                        <option value="Africa/Mogadishu">Mogadishu (GMT+3)</option>
+                        <option value="Asia/Dubai">Dubai (GMT+4)</option>
+                        <option value="Indian/Maldives">Maldives (GMT+5)</option>
+                        <option value="Asia/Ho_Chi_Minh">Ho Chi Minh (GMT+7)</option>
+                        <option value="Australia/Sydney">Sydney (GMT+11)</option>
+                        <option value="Pacific/Fiji">Fiji (GMT+12)</option>
                     </select>
                 </div>
             </div>
@@ -63,7 +63,7 @@
             <h2 class="text-center mb-3 mt-3">or</h2>
             <div class="form-group" id="date">
                 <div class="day">
-                    <select class="form-control" id="day">
+                    <select class="form-control custom-select" id="day">
                         <option>Day</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -99,7 +99,7 @@
                     </select>
                 </div>
                 <div class="month">
-                    <select class="form-control" id="month">
+                    <select class="form-control custom-select" id="month">
                         <option>Month</option>
                         <option value="1">January</option>
                         <option value="2">February</option>
@@ -116,10 +116,10 @@
                     </select>
                 </div>
             </div>
-            <button class="btn btn-primary">Search</button>
+            <button class="btn">Search</button>
         </form>
         
-            <div id="display" class="col-sm-12 col-md-6 col-lg-4">
+            <div id="display">
             </div>
         
         

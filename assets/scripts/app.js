@@ -52,7 +52,7 @@ const renderNameResult = data => {
                    <h2 class="card-title">${filteredArr}</h2>
                    <p class="card-text">${filteredArr}'s Name Day is ${result.day}/${result.month} in ${country}</p>
                    
-                   <h6>Other names this day</h6>
+                   <h3>Other names this day</h3>
                    ${(result.name.includes(",")) ? otherNames : "There is no other names for this date." }
                </div>
            `;
@@ -66,8 +66,8 @@ const renderDateResult = data => {
    data.data.forEach(result => { 
        display.innerHTML += `
            <div class="card mt-3">
-               <h5 class="card-title">${result.dates.day}/${result.dates.month}</h5>
-               <h6>${result.namedays[country]}</h6>
+               <h2 class="card-title">${result.dates.day}/${result.dates.month}</h2>
+               <h3>${result.namedays[country]}</h3>
            </div>
        `;
    });

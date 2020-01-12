@@ -4,11 +4,20 @@
     padding: 0;
 }
 
-
-.col-md-6 {
-    margin: 0 auto;
-    max-width: 80%;
+body {
+    background-image: url(../images/card.png);
+    background-color: transparent;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #eee;
+    font-family: 'Raleway', sans-serif;
 }
+
+form {
+    margin-bottom: 1rem;
+}
+
 
 .col-lg-4 {}
 
@@ -19,14 +28,21 @@
     margin-bottom: 1rem;
 }
 #country {
+    border: none;
     width: 100%;
     margin-bottom: 1rem;
     
 }
 
 #timezone {
+    border: none;
     width: 100%;
     margin-bottom: 1rem;
+}
+
+/* Search input */
+#search {
+    border: none;
 }
 
 /* Date layout */
@@ -41,7 +57,17 @@
 }
 #date .month,
 #date .day {
-     width: 45%;
+    width: 45%;
+}
+
+#month,
+#day {
+    border: none;
+}
+
+/* Button */
+button {
+    background-color: rgb(255, 255, 255) !important;
 }
 
 /* Card layout */
@@ -49,12 +75,14 @@
 #display,
 #today {
     color: #444;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     width: 100%;
 }
 
 #display .card,
 #today .card {
+    
+    border: none;
     padding: 1rem;
 }
 
