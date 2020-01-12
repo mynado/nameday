@@ -3,14 +3,17 @@
  * 
  */
 const display = document.querySelector('#display');
+const todayDisplay = document.querySelector('#today');
 
 const renderTodaysName = data => {
-    const country = document.querySelector('#country').value;
+    const country = document.querySelector('#country');
+    const selectedCountry = country.options[country.selectedIndex].innerText;
     data.data.forEach(result => { 
-        display.innerHTML += `
-            <div class="card mt-3">
-                <p>Today, ${result.dates.day}/${result.dates.month} is the name day of</p>
-                <h4>${result.namedays[country]}</h4>
+        todayDisplay.innerHTML += `
+            <div class="card today-card">
+                <p>Today, ${result.dates.day}/${result.dates.month}, is the name day of</p>
+                <h2>${result.namedays[country.value]}</h2>
+                <p>in ${selectedCountry}</p>
             </div>
         `;
     });
@@ -39,19 +42,18 @@ const renderNameResult = data => {
    const searchName = document.querySelector('#search').value;
    const capitalName = searchName[0].toUpperCase() + searchName.substr(1);
    data.results.forEach(result => {
-       let nameArr = result.name.split(',');
-       let filteredArr = nameArr.filter(i => i.includes(capitalName));
+       const nameArr = result.name.split(',');
+       const filteredArr = nameArr.filter(name => name.includes(capitalName));
        const found = filteredArr.find(name => name.includes(capitalName));
-       
-       console.log(found);
+       const otherNames = nameArr.filter(name => !name.includes(capitalName));  
        if (found) {
            display.innerHTML += `
                <div class="card mt-3">
-                   <h4 class="card-title">${filteredArr}</h4>
-                   <p class="card-text">${result.day}/${result.month}</p>
-                   <p class="card-text">${country}</p>
+                   <h2 class="card-title">${filteredArr}</h2>
+                   <p class="card-text">${filteredArr}'s Name Day is ${result.day}/${result.month} in ${country}</p>
+                   
                    <h6>Other names this day</h6>
-                   ${(result.name.includes(",")) ? result.name : "There is no other names for this date." }
+                   ${(result.name.includes(",")) ? otherNames : "There is no other names for this date." }
                </div>
            `;
        }
@@ -88,8 +90,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
                renderNameResult(data); 
            } else {
                renderMsg("Sorry! This name does not exist in the database.")
-           }
-                
+           }     
        })
        .catch(err => {
            // network error?
@@ -116,7 +117,7 @@ document.querySelector('#search-form').addEventListener('change', e => {
     e.preventDefault();
     const country = document.querySelector('#country').value;
     const timezone = document.querySelector('#timezone').value;
-    display.innerHTML = "";
+    todayDisplay.innerHTML = "";
     getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
        console.log(data)
        renderTodaysName(data);

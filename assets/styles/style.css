@@ -4,36 +4,90 @@
     padding: 0;
 }
 
-#country {
-    width: 30%;
+
+.col-md-6 {
+    margin: 0 auto;
+    max-width: 80%;
 }
+
+.col-lg-4 {}
+
+/* Country and timezone layout */
+
+#countrytime {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+#country {
+    width: 100%;
+    margin-bottom: 1rem;
+    
+}
+
+#timezone {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Date layout */
 
 #date {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    
+    margin-bottom: 1rem;
+    width: 100%;
 
 }
 #date .month,
 #date .day {
-    display: flex;
-    justify-content: space-evenly;
+     width: 45%;
+}
+
+/* Card layout */
+
+#display,
+#today {
+    color: #444;
+    margin-bottom: 1rem;
     width: 100%;
 }
 
-#month {
-    max-width: 100%;
-}
-
-#day {
-    max-width: 50%;
-}
-
-#display {
-    color: #444;
+#display .card,
+#today .card {
     padding: 1rem;
-    
 }
 
-#display .card {
-    padding: 1em;
+.today-card {
+    text-align: center;
 }
+
+
+/* Small devices */
+@media (min-width: 576px) {}
+
+/* Medium devices */
+@media (min-width: 768px) {
+    #countrytime {
+        display: flex;
+        justify-content: space-between;
+    
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    #country {
+        width: 100%;
+        
+    }
+    
+    #timezone {
+        width: 100%;
+       
+    }
+}
+
+/* Large devices */
+@media (min-width: 992px) { ... }
+
+/* Extra large devices */
+@media (min-width: 1200px) { ... }
