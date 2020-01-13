@@ -16,13 +16,13 @@
 <body class="text-dark">
     <div class="container mt-3">
         <h1>Name Day App</h1>
-        <div id="today">
-        </div>
+        <!-- <div id="today">
+        </div> -->
         <form id="search-form">
             <div class="form-group" id="countrytime">
                 <div class="country"> 
                     <select class="form-control custom-select" id="country" required>
-                        <option>Country</option>
+                        <option value="" selected>Country</option>
                         <option value="at">Austria</option>
                         <option value="cz">Czechia</option>
                         <option value="de">Germany</option>
@@ -33,13 +33,13 @@
                         <option value="hu">Hungary</option>
                         <option value="it">Italy</option>
                         <option value="pl">Poland</option>
-                        <option value="se" selected>Sweden</option>
+                        <option value="se">Sweden</option>
                         <option value="sk">Slovakia</option>
                         <option value="us">USA</option>
                     </select>
                 </div>
                 <div class="timezone-wrapper"> 
-                    <select class="form-control custom-select" id="timezone" required>
+                    <select class="form-control custom-select" id="timezone">
                         <option>Timezone</option>
                         <option value="Pacific/Honolulu">Honolulu (GMT-10)</option>
                         <option value="America/Los_Angeles">Los Angeles (GMT-8)</option>
