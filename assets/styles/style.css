@@ -165,5 +165,12 @@ form {
 
 }
 
+/* Large devices */
+@media (min-width: 992px) {
+    .container {
+        max-width: 970px;
+    }
+}
+
 /* Extra large devices */
 /* @media (min-width: 1200px) {} */
