@@ -108,7 +108,14 @@ document.querySelector('#search-form').addEventListener('submit', e => {
         });
     } else if (month && day) {
         getNameByDate(country, month, day).then(data => {
-            renderDateResult(data);
+            console.log(status);
+            if (data){
+                renderDateResult(data);
+            } else {
+                console.log('400', status);
+                renderMsg('ojoj');
+            }
+            
         })
         .catch(err => {
             // network error
@@ -119,7 +126,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     }
     document.querySelector('#month').value = "Month";
     document.querySelector('#day').value = "Day";
-    name.blur();
+    document.querySelector("#search").blur();
 });
 
 // Change timezone and show Today's name according to timezone

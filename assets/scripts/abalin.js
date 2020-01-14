@@ -19,7 +19,7 @@ const getDateByName = async (name, country = "us") => {
 const getNameByDate = async (country, month, day) => {
     // get name by date from Abalin API
     const response = await fetch(`${baseUrl}/namedays?country=${country}&month=${month}&day=${day}`);
-
+    
     // convert response from JSON
     const data = await response.json();   
 
