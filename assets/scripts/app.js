@@ -43,23 +43,26 @@ const renderNameResult = data => {
     const country = data[ "country name" ];
     const searchName = document.querySelector('#search').value;
     const capitalName = searchName[0].toUpperCase() + searchName.substr(1);
-    let obj = data.results.find(o => o.name.includes(capitalName));
-    
-    if (obj) {
-        const nameArr = obj.name.split(',');
-        const filteredArr = nameArr.filter(name => name.includes(capitalName));
-        const otherNames = nameArr.filter(name => !name.includes(capitalName));  
+    let obj = data.results.filter(o => o.name.includes(capitalName));
+    console.log('obj', obj);
+
+    if (obj && obj.length == 0) {
+        renderMsg('Sorry! This name does not exist in the database.');
+    } else if (obj) {
+        obj.forEach(result => {
+            const nameArr = result.name.split(',');
+            const filteredArr = nameArr.filter(name => name.includes(capitalName));
+            const otherNames = nameArr.filter(name => !name.includes(capitalName));  
             display.innerHTML += `
                 <div class="card">
                     <h2 class="card-title">${filteredArr}</h2>
-                    <p class="card-text">${filteredArr}'s Name Day is ${obj.day}/${obj.month} in ${country}</p>
+                    <p class="card-text">${filteredArr}'s Name Day is ${result.day}/${result.month} in ${country}</p>
                     <h3>Other names this day</h3>
-                    ${(obj.name.includes(",")) ? otherNames : "There is no other names for this date." }
+                    ${(result.name.includes(",")) ? otherNames : "There is no other names for this date." }
                 </div>
             `;
-    } else {
-        renderMsg('Sorry! This name does not exist in the database.');
-    }
+        });  
+    } 
     document.querySelector('#search').value = "";
 };
 
