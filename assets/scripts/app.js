@@ -33,7 +33,7 @@ getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
 // Error msg
 const renderMsg = msg => {
     display.innerHTML = `
-    <div class="alert alert-warning" role="alert">${msg}</div>
+    <div class="msg alert alert-warning" role="alert">${msg}</div>
     `;
 };
 
@@ -119,6 +119,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
     }
     document.querySelector('#month').value = "Month";
     document.querySelector('#day').value = "Day";
+    name.blur();
 });
 
 // Change timezone and show Today's name according to timezone
