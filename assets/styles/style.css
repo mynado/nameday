@@ -91,9 +91,13 @@ form {
     margin-bottom: 1rem;
 }
 
-.today-card {
-    text-align: center;
+.card-template {
+    display: none;
 }
+
+/* .today-card {
+    text-align: center;
+} */
 
 
 

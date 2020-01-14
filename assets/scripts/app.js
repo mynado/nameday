@@ -10,7 +10,7 @@ const renderTodaysName = data => {
     const selectedCountry = country.options[country.selectedIndex].innerText;
     data.data.forEach(result => { 
         display.innerHTML += `
-            <div class="card today-card">
+            <div class="card text-center">
                 <p>Today, ${result.dates.day}/${result.dates.month}, is the name day of</p>
                 <h2>${result.namedays[country.value]}</h2>
                 <p>in ${selectedCountry}</p>
