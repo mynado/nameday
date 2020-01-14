@@ -43,24 +43,23 @@ const renderNameResult = data => {
     const country = data[ "country name" ];
     const searchName = document.querySelector('#search').value;
     const capitalName = searchName[0].toUpperCase() + searchName.substr(1);
-
-    data.results.forEach(result => {
-        const nameArr = result.name.split(',');
+    let obj = data.results.find(o => o.name.includes(capitalName));
+    
+    if (obj) {
+        const nameArr = obj.name.split(',');
         const filteredArr = nameArr.filter(name => name.includes(capitalName));
-        const found = filteredArr.find(name => name.includes(capitalName, 0));
         const otherNames = nameArr.filter(name => !name.includes(capitalName));  
-       
-        if (filteredArr.length > 0) {
             display.innerHTML += `
                 <div class="card">
                     <h2 class="card-title">${filteredArr}</h2>
-                    <p class="card-text">${filteredArr}'s Name Day is ${result.day}/${result.month} in ${country}</p>
+                    <p class="card-text">${filteredArr}'s Name Day is ${obj.day}/${obj.month} in ${country}</p>
                     <h3>Other names this day</h3>
-                    ${(result.name.includes(",")) ? otherNames : "There is no other names for this date." }
+                    ${(obj.name.includes(",")) ? otherNames : "There is no other names for this date." }
                 </div>
             `;
-        } 
-    });
+    } else {
+        renderMsg('Sorry! This name does not exist in the database.');
+    }
     document.querySelector('#search').value = "";
 };
 
@@ -86,6 +85,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
    const country = document.querySelector('#country').value;
    const month = Number(document.querySelector('#month').value);
    const day = Number(document.querySelector('#day').value);
+   const capitalName = name[0].toUpperCase() + name.substr(1);
    
    display.innerHTML = "";
 
@@ -98,6 +98,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
                renderNameResult(data); 
            } else {
                 renderMsg("Sorry! This name does not exist in the database.")
+                document.querySelector('#search').value = "";
            }
        })
        .catch(err => {
@@ -106,7 +107,6 @@ document.querySelector('#search-form').addEventListener('submit', e => {
        });
    } else if (month && day) {
        getNameByDate(country, month, day).then(data => {
-           console.log(data);
            renderDateResult(data);
        })
        .catch(err => {
