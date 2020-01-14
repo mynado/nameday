@@ -17,19 +17,18 @@ const renderTodaysName = data => {
             </div>
         `;
     });
- };
- 
- // Always show today's name
- const country = document.querySelector('#country').value;
- const timezone = document.querySelector('#timezone').value;
- getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
-     console.log(data)
-     renderTodaysName(data);
-  })
-  .catch(err => {
-     // network error
-     renderMsg(err);
-  });
+};
+
+// Always show today's name
+const country = document.querySelector('#country').value;
+const timezone = document.querySelector('#timezone').value;
+getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
+    renderTodaysName(data);
+})
+.catch(err => {
+    // network error
+    renderMsg(err);
+});
 
 // Error msg
 const renderMsg = msg => {
@@ -44,7 +43,6 @@ const renderNameResult = data => {
     const searchName = document.querySelector('#search').value;
     const capitalName = searchName[0].toUpperCase() + searchName.substr(1);
     let obj = data.results.filter(o => o.name.includes(capitalName));
-    console.log('obj', obj);
 
     if (obj && obj.length == 0) {
         renderMsg('Sorry! This name does not exist in the database.');
@@ -68,59 +66,59 @@ const renderNameResult = data => {
 
 // render Name according to choosed Date
 const renderDateResult = data => {
-   const country = document.querySelector('#country');
-   const selectedCountry = country.options[country.selectedIndex].innerText;
-   data.data.forEach(result => { 
-       display.innerHTML += `
-           <div class="card text-center">
+    const country = document.querySelector('#country');
+    const selectedCountry = country.options[country.selectedIndex].innerText;
+    data.data.forEach(result => { 
+        display.innerHTML += `
+            <div class="card text-center">
                 <p>${result.dates.day}/${result.dates.month} is the Name Day of</p>
                 <h2>${result.namedays[country.value]}</h2>
                 <p>in ${selectedCountry}</p>
-           </div>
-       `;
-   });
+            </div>
+        `;
+    });
 };
 
 // Search button for 'Name' and 'Date'
 document.querySelector('#search-form').addEventListener('submit', e => {
-   e.preventDefault();
-   const name = document.querySelector('#search').value;
-   const country = document.querySelector('#country').value;
-   const month = Number(document.querySelector('#month').value);
-   const day = Number(document.querySelector('#day').value);
-   const capitalName = name[0].toUpperCase() + name.substr(1);
-   
-   display.innerHTML = "";
+    e.preventDefault();
+    const name = document.querySelector('#search').value;
+    const country = document.querySelector('#country').value;
+    const month = Number(document.querySelector('#month').value);
+    const day = Number(document.querySelector('#day').value);
 
-   if (name && (month && day)) {
-       renderMsg("Try again! You can only search by name OR date.");
-   } else if (name.length > 2) {
-       getDateByName(name, country).then(data => {
-           if (data.results.length > 0) {
-               console.log(data);
-               renderNameResult(data); 
-           } else {
+    display.innerHTML = "";
+
+    if (name && (month && day)) {
+        renderMsg("Try again! You can only search by name OR date.");
+    } else if (!(name || (month && day))) {
+        renderMsg("Try again! Search by filling in a name or choose a date.");
+    } else if (name.length > 2) {
+        getDateByName(name, country).then(data => {
+            if (data.results.length > 0) {
+                renderNameResult(data); 
+            } else {
                 renderMsg("Sorry! This name does not exist in the database.")
                 document.querySelector('#search').value = "";
-           }
-       })
-       .catch(err => {
-           // network error
-           renderMsg(err);
-       });
-   } else if (month && day) {
-       getNameByDate(country, month, day).then(data => {
-           renderDateResult(data);
-       })
-       .catch(err => {
-           // network error
-           renderMsg(err);
-       });
-   } else {
-       renderMsg('The name must be at least 3 characters.');
-   }
-   document.querySelector('#month').value = "Month";
-   document.querySelector('#day').value = "Day";
+            }
+        })
+        .catch(err => {
+            // network error
+            renderMsg(err);
+        });
+    } else if (month && day) {
+        getNameByDate(country, month, day).then(data => {
+            renderDateResult(data);
+        })
+        .catch(err => {
+            // network error
+            renderMsg(err);
+        });
+    } else {
+        renderMsg('The name must be at least 3 characters.');
+    }
+    document.querySelector('#month').value = "Month";
+    document.querySelector('#day').value = "Day";
 });
 
 // Change timezone and show Today's name according to timezone
@@ -130,10 +128,10 @@ document.querySelector('#search-form #countrytime').addEventListener('change', e
     const timezone = document.querySelector('#timezone').value;
     display.innerHTML = "";
     getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
-       renderTodaysName(data);
+        renderTodaysName(data);
     })
     .catch(err => {
-       // network error
-       renderMsg(err);
+    // network error
+    renderMsg(err);
     });
 });
