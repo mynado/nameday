@@ -43,7 +43,8 @@ const renderNameResult = data => {
     const searchName = document.querySelector('#search').value.trim();
     const capitalName = searchName[0].toUpperCase() + searchName.substr(1);
     let obj = data.results.filter(o => o.name.includes(capitalName));
-
+    console.log(capitalName.length);
+    console.log(obj.length);
     if (obj && obj.length == 0) {
         renderMsg('Sorry! This name does not exist in the database.');
     } else if (obj) {
