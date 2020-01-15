@@ -40,7 +40,7 @@ const renderMsg = msg => {
 // render Name according to search query
 const renderNameResult = data => {
     const country = data[ "country name" ];
-    const searchName = document.querySelector('#search').value;
+    const searchName = document.querySelector('#search').value.trim();
     const capitalName = searchName[0].toUpperCase() + searchName.substr(1);
     let obj = data.results.filter(o => o.name.includes(capitalName));
 
@@ -82,7 +82,7 @@ const renderDateResult = data => {
 // Search button for 'Name' and 'Date'
 document.querySelector('#search-form').addEventListener('submit', e => {
     e.preventDefault();
-    const name = document.querySelector('#search').value;
+    const name = document.querySelector('#search').value.trim();
     const country = document.querySelector('#country').value;
     const month = Number(document.querySelector('#month').value);
     const day = Number(document.querySelector('#day').value);
