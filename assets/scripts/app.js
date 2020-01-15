@@ -4,6 +4,17 @@
  */
 const display = document.querySelector('#display');
 
+// Get today's name from API
+const getTodaysName = (timezone, country) => {
+    getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
+        renderTodaysName(data);
+    })
+    .catch(err => {
+        // network error
+        renderMsg(err);
+    });
+};
+
 // render Today's name
 const renderTodaysName = data => {
     const country = document.querySelector('#country');
@@ -18,17 +29,6 @@ const renderTodaysName = data => {
         `;
     });
 };
-
-// Always show today's name
-const country = document.querySelector('#country').value;
-const timezone = document.querySelector('#timezone').value;
-getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
-    renderTodaysName(data);
-})
-.catch(err => {
-    // network error
-    renderMsg(err);
-});
 
 // Error msg
 const renderMsg = msg => {
@@ -108,18 +108,11 @@ document.querySelector('#search-form').addEventListener('submit', e => {
         });
     } else if (month && day) {
         getNameByDate(country, month, day).then(data => {
-            console.log(status);
-            if (data){
-                renderDateResult(data);
-            } else {
-                console.log('400', status);
-                renderMsg('ojoj');
-            }
-            
+            renderDateResult(data);
         })
         .catch(err => {
             // network error
-            renderMsg(err);
+            renderMsg("Oops! Something went wrong.");
         });
     } else {
         renderMsg('The name must be at least 3 characters.');
@@ -135,11 +128,5 @@ document.querySelector('#search-form #countrytime').addEventListener('change', e
     const country = document.querySelector('#country').value;
     const timezone = document.querySelector('#timezone').value;
     display.innerHTML = "";
-    getTodaysNameByTimezoneAndCountry(timezone, country).then(data => {
-        renderTodaysName(data);
-    })
-    .catch(err => {
-    // network error
-    renderMsg(err);
-    });
+    getTodaysName(timezone, country);
 });
