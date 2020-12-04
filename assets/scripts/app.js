@@ -65,15 +65,13 @@ const renderNameResult = data => {
 const renderDateResult = data => {
     const country = document.querySelector('#country');
     const selectedCountry = country.options[country.selectedIndex].innerText;
-    data.data.forEach(result => { 
-        display.innerHTML += `
-            <div class="card text-center">
-                <p>${result.dates.day}/${result.dates.month} is the Name Day of</p>
-                <h2>${result.namedays[country.value]}</h2>
-                <p>in ${selectedCountry}</p>
-            </div>
-        `;
-    });
+    display.innerHTML += `
+        <div class="card text-center">
+            <p>${data.data.dates.day}/${data.data.dates.month} is the Name Day of</p>
+            <h2>${data.data.namedays[country.value]}</h2>
+            <p>in ${selectedCountry}</p>
+        </div>
+    `;
 };
 
 // Search button for 'Name' and 'Date'
@@ -109,7 +107,7 @@ document.querySelector('#search-form').addEventListener('submit', e => {
         })
         .catch(err => {
             // network error
-            renderMsg("Oops! Something went wrong.");
+            renderMsg("Oops! Something went wrong.", err);
         });
     } else {
         renderMsg('The name must be at least 3 characters.');
